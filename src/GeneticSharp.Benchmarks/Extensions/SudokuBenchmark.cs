@@ -15,19 +15,26 @@ namespace GeneticSharp.Benchmarks
     [Config(typeof(DefaultConfig))]
     public class SudokuBenchmark
     {
-        [Params(5)]
+        [Params(120)]
         public float SecondsEvolving { get; set; }
 
-        [Params(50)]
+        [Params(50, 100, 200)]
         public int PopulationSize { get; set; }
 
         [Params(
-           // Super easy - Population 250 - generation 16 - 0.2s
-           "9.2..54.31...63.255.84.7.6..263.9..1.57.1.29..9.67.53.24.53.6..7.52..3.4.8..4195."
+            // Super easy - Population 250 - generation 16 - 0.2s
+            "9.2..54.31...63.255.84.7.6..263.9..1.57.1.29..9.67.53.24.53.6..7.52..3.4.8..4195.",
 
-           //// Easy - Population 5000 - generation 24 - 10s
-            //"..48...1767.9.....5.8.3...43..74.1...69...78...1.69..51...8.3.6.....6.9124...15.."
+            // Easy - Population 5000 - generation 24 - 10s
+            "..48...1767.9.....5.8.3...43..74.1...69...78...1.69..51...8.3.6.....6.9124...15..",
+
+            // Medium - Population 100000 - generation 30  - 10mn
+            "..6.......8..542...4..9..7...79..3......8.4..6.....1..2.3.67981...5...4.478319562",
+
+            // Hard - Population 300000 - generation 37 - 1h30mn
+            "....9.4.8.....2.7..1.7....32.4..156...........952..7.19....5.1..3.4.....1.2.7...."
          )]        
+
         public string RawBoard { get; set; }
 
         [ParamsSource(nameof(ValuesForSelection))]
@@ -41,9 +48,9 @@ namespace GeneticSharp.Benchmarks
 
         public static IEnumerable<ISelection> ValuesForSelection => new ISelection[]
         {
-            new EliteSelection(),
-            new TournamentSelection(),
-            new RouletteWheelSelection(),
+            //new EliteSelection(),
+            //new TournamentSelection(),
+            //new RouletteWheelSelection(),
             new StochasticUniversalSamplingSelection()
         };
 
@@ -56,12 +63,13 @@ namespace GeneticSharp.Benchmarks
             //new PartiallyMappedCrossover(),
             //new PositionBasedCrossover(),
           
-            new CutAndSpliceCrossover(),
-            new OnePointCrossover(),
-            new ThreeParentCrossover(),
-            new TwoPointCrossover(),
+            //new CutAndSpliceCrossover(),
+
+            //new OnePointCrossover(),
+            //new ThreeParentCrossover(),
+            //new TwoPointCrossover(),
             new UniformCrossover(),
-            new VotingRecombinationCrossover(),
+            //new VotingRecombinationCrossover(),
         };
 
         public static IEnumerable<IMutation> ValuesForMutation => new IMutation[]

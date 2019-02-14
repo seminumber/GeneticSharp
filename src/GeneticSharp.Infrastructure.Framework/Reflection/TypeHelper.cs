@@ -36,17 +36,9 @@ namespace GeneticSharp.Infrastructure.Framework.Reflection
             return types;
         }
 
-        /// <summary>
-        /// Gets the available crossover names.
-        /// </summary>
-        /// <typeparam name="TInterface">The interface.</typeparam>
-        /// <returns>The crossover names.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "is a good use for this case")]
-        public static IList<string> GetDisplayNamesByInterface<TInterface>()
+        public static string GetDisplayName(this object target)
         {
-            return GetTypesByInterface<TInterface>()
-                .Select(t => GetDisplayNameAttribute(t).DisplayName)
-                .ToList();
+            return GetDisplayNameAttribute(target.GetType()).DisplayName;
         }
 
         /// <summary>
@@ -68,6 +60,13 @@ namespace GeneticSharp.Infrastructure.Framework.Reflection
             {
                 throw new ArgumentException("A {0}'s implementation with name '{1}' was found, but seems the constructor args were invalid.".With(typeof(TInterface).Name, name), "constructorArgs", ex);
             }
+        }
+
+        public static IList<string> GetDisplayNamesByInterface<TInterface>()
+        {
+            return GetTypesByInterface<TInterface>()
+                .Select(t => GetDisplayNameAttribute(t).DisplayName)
+                .ToList();
         }
 
         /// <summary>

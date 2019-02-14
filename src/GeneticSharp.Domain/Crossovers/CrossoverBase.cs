@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Infrastructure.Framework.Texts;
 using GeneticSharp.Infrastructure.Framework.Commons;
+using GeneticSharp.Infrastructure.Framework.Reflection;
 
 namespace GeneticSharp.Domain.Crossovers
 {
@@ -96,6 +97,15 @@ namespace GeneticSharp.Domain.Crossovers
         /// <param name="parents">The parents chromosomes.</param>
         /// <returns>The offspring (children) of the parents.</returns>
         protected abstract IList<IChromosome> PerformCross(IList<IChromosome> parents);
+
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Crossovers.CrossoverBase"/>.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Crossovers.CrossoverBase"/>.</returns>
+        public override string ToString()
+        {
+            return this.GetDisplayName();
+        }
         #endregion        
     }
 }

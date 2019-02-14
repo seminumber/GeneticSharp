@@ -5,6 +5,7 @@ using GeneticSharp.Domain.Populations;
 using GeneticSharp.Infrastructure.Framework.Texts;
 using GeneticSharp.Infrastructure.Framework.Commons;
 using System.Linq;
+using GeneticSharp.Infrastructure.Framework.Reflection;
 
 namespace GeneticSharp.Domain.Selections
 {
@@ -28,7 +29,7 @@ namespace GeneticSharp.Domain.Selections
         }
         #endregion
 
-        #region ISelection implementation
+        #region Methods
         /// <summary>
         /// Selects the number of chromosomes from the generation specified.
         /// </summary>
@@ -61,6 +62,15 @@ namespace GeneticSharp.Domain.Selections
         /// <param name="number">The number of chromosomes to select.</param>
         /// <param name="generation">The generation where the selection will be made.</param>
         protected abstract IList<IChromosome> PerformSelectChromosomes(int number, Generation generation);
+
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Selections.SelectionBase"/>.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Selections.SelectionBase"/>.</returns>
+        public override string ToString()
+        {
+            return this.GetDisplayName();
+        }
         #endregion
     }
 }
