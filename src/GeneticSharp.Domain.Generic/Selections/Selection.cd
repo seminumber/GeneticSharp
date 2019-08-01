@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="GeneticSharp.Domain.Selections.EliteSelection" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Selections.Generic.EliteSelection" Collapsed="true">
     <Position X="2.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Selections\EliteSelection.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Selections.RouletteWheelSelection" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Selections.Generic.RouletteWheelSelection" Collapsed="true">
     <Position X="6.75" Y="3.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Selections\RouletteWheelSelection.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Selections.SelectionBase" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Selections.Generic.SelectionBase" Collapsed="true">
     <Position X="4.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAgAAAAAAIAAAAAAAAA=</HashCode>
@@ -22,28 +22,28 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="GeneticSharp.Domain.Selections.SelectionException" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Selections.Generic.SelectionException" Collapsed="true">
     <Position X="9.25" Y="2.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Selections\SelectionException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Selections.SelectionService">
+  <Class Name="GeneticSharp.Domain.Selections.Generic.SelectionService">
     <Position X="9.25" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAIAAAABAAAAAA=</HashCode>
       <FileName>Selections\SelectionService.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Selections.TournamentSelection" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Selections.Generic.TournamentSelection" Collapsed="true">
     <Position X="4.5" Y="3.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAQAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Selections\TournamentSelection.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="GeneticSharp.Domain.Selections.ISelection">
+  <Interface Name="GeneticSharp.Domain.Selections.Generic.ISelection">
     <Position X="4.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Populations;
+using GeneticSharp.Domain.Chromosomes.Generic;
+using GeneticSharp.Domain.Populations.Generic;
 
-namespace GeneticSharp.Domain.Reinsertions
+namespace GeneticSharp.Domain.Reinsertions.Generic
 {
     /// <summary>
     /// Fitness Based Reinsertion.
@@ -14,11 +14,11 @@ namespace GeneticSharp.Domain.Reinsertions
     /// </remarks>
     /// </summary>
     [DisplayName("Fitness Based")]
-    public class FitnessBasedReinsertion : ReinsertionBase
+    public class FitnessBasedReinsertion<T> : ReinsertionBase<T>
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Reinsertions.FitnessBasedReinsertion"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Reinsertions.Generic.FitnessBasedReinsertion"/> class.
         /// </summary>
         public FitnessBasedReinsertion() : base(true, false)
         {
@@ -33,7 +33,7 @@ namespace GeneticSharp.Domain.Reinsertions
         /// <param name="population">The population.</param>
         /// <param name="offspring">The offspring.</param>
         /// <param name="parents">The parents.</param>
-        protected override IList<IChromosome> PerformSelectChromosomes(IPopulation population, IList<IChromosome> offspring, IList<IChromosome> parents)
+        protected override IList<IChromosome<T>> PerformSelectChromosomes(IPolulation<T> population, IList<IChromosome<T>> offspring, IList<IChromosome<T>> parents)
         {
             if (offspring.Count > population.MaxSize)
             {

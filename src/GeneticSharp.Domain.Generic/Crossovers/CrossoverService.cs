@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using GeneticSharp.Domain.Crossovers.Generic;
 using GeneticSharp.Infrastructure.Framework.Reflection;
 
-namespace GeneticSharp.Domain.Crossovers
+namespace GeneticSharp.Domain.Crossovers.Generic
 {
     /// <summary>
     /// Crossover service.

@@ -42,7 +42,7 @@ namespace TspWpf.ViewModel
 
         public void Initialize()
         {
-            GA = new TspGA();
+            GA = new TspGAGeneric();
             GA.Initialize(NumCities, SizeX, SizeY);
 
             RaisePropertyChanged(nameof(Cities));
@@ -59,22 +59,21 @@ namespace TspWpf.ViewModel
         public int SizeX { get; set; } = 300;
         public int SizeY { get; set; } = 300;
 
-        public TspGA GA { get; set; }
+        public TspGAGeneric GA { get; set; }
 
-        public IList<TspCity> Cities => GA?.Fitness?.Cities;
+        public IList<TspCity> Cities => GA?.Cities;
 
         public IList<TspCity> BestLoop {
             get
             {
                 var genes = GA?.BestChromosome?.GetGenes();
-                if (genes == null || genes.Length == 0) return new TspCity[0];
-                return genes.Concat(new[] { genes.First() })
-                            .Select(w => Cities[(int)w.Value]).ToList();
+                if (genes == null || genes.Count == 0) return new TspCity[0];
+                return genes.Concat(new[] { genes.First() }).ToList();
             }
         }
 
-        public double BestDistance => GA?.BestChromosome?.Distance ?? 0.0;
-            
-
+        public double BestDistance => 
+            (GA?.BestChromosome as TspChromosomeGeneric)?.Distance 
+                ?? 0.0;
     }
 }

@@ -18,7 +18,7 @@ namespace GeneticSharp.Domain.Crossovers.Generic
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.UniformCrossover"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.Generic.UniformCrossover"/> class.
         /// </summary>
         /// <param name="mixProbability">The mix probability. he default mix probability is 0.5.</param>
         public UniformCrossover(float mixProbability)
@@ -28,7 +28,7 @@ namespace GeneticSharp.Domain.Crossovers.Generic
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.UniformCrossover"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.Generic.UniformCrossover"/> class.
         /// <remarks>
         /// The default mix probability is 0.5.
         /// </remarks>

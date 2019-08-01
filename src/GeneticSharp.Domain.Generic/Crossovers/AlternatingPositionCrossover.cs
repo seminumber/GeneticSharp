@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Chromosomes.Generic;
 
 namespace GeneticSharp.Domain.Crossovers.Generic
@@ -27,7 +26,7 @@ namespace GeneticSharp.Domain.Crossovers.Generic
     public sealed class AlternatingPositionCrossover<T> : CrossoverBase<T>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.VotingRecombinationCrossover"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.Generic.VotingRecombinationCrossover"/> class.
         /// </summary>
         public AlternatingPositionCrossover() : base(2, 2)
         {

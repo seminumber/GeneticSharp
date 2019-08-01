@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Crossovers;
-using GeneticSharp.Domain.Mutations;
-using GeneticSharp.Domain.Populations;
+using GeneticSharp.Domain.Chromosomes.Generic;
+using GeneticSharp.Domain.Crossovers.Generic;
+using GeneticSharp.Domain.Mutations.Generic;
+using GeneticSharp.Domain.Populations.Generic;
 
-namespace GeneticSharp.Domain
+namespace GeneticSharp.Domain.Generic
 {
     /// <summary>
     /// Defines an interface for operators strategy.
     /// </summary>
-    public interface IOperatorsStrategy
+    public interface IOperatorStrategy<T>
     {
         /// <summary>
         /// Crosses the specified parents.
@@ -18,7 +18,7 @@ namespace GeneticSharp.Domain
         /// <param name="crossoverProbability">The crossover probability.</param>
         /// <param name="parents">The parents.</param>
         /// <returns>The result chromosomes.</returns>
-        IList<IChromosome> Cross(IPopulation population, ICrossover crossover, float crossoverProbability, IList<IChromosome> parents);
+        IList<IChromosome<T>> Cross(IPolulation<T> population, ICrossover<T> crossover, float crossoverProbability, IList<IChromosome<T>> parents);
 
         /// <summary>
         /// Mutate the specified chromosomes.
@@ -26,6 +26,6 @@ namespace GeneticSharp.Domain
         /// <param name="mutation">The mutation class.</param>
         /// <param name="mutationProbability">The mutation probability.</param>
         /// <param name="chromosomes">The chromosomes.</param>
-        void Mutate(IMutation mutation, float mutationProbability, IList<IChromosome> chromosomes);
+        void Mutate(IMutation<T> mutation, float mutationProbability, IList<IChromosome<T>> chromosomes);
     }
 }

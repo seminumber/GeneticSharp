@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 
-namespace GeneticSharp.Domain.Mutations
+namespace GeneticSharp.Domain.Mutations.Generic
 {
 	/// <summary>
 	/// Reverse Sequence Mutation (RSM).
@@ -14,7 +14,7 @@ namespace GeneticSharp.Domain.Mutations
 	/// </remarks>
 	/// </summary>
 	[DisplayName("Reverse Sequence (RSM)")]
-    public class ReverseSequenceMutation : SequenceMutationBase
+    public class ReverseSequenceMutation<T> : SequenceMutationBase<T>
     {
         #region Constructors
         /// <summary>
@@ -32,7 +32,7 @@ namespace GeneticSharp.Domain.Mutations
         /// </summary>
         /// <returns>The resulted sequence after mutation operation.</returns>
         /// <param name="sequence">The sequence to be mutated.</param>
-        protected override IEnumerable<T> MutateOnSequence<T>(IEnumerable<T> sequence)
+        protected override IEnumerable<T> MutateOnSequence(IEnumerable<T> sequence)
         {
             return sequence.Reverse();
         }

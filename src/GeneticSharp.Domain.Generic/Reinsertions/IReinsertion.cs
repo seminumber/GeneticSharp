@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Populations;
+using GeneticSharp.Domain.Chromosomes.Generic;
+using GeneticSharp.Domain.Populations.Generic;
 
-namespace GeneticSharp.Domain.Reinsertions
+namespace GeneticSharp.Domain.Reinsertions.Generic
 {
     /// <summary>
     /// Defines an interface for reinsertions.
@@ -15,7 +15,7 @@ namespace GeneticSharp.Domain.Reinsertions
     /// <see href="http://usb-bg.org/Bg/Annual_Informatics/2011/SUB-Informatics-2011-4-29-35.pdf">Generalized Nets Model of offspring Reinsertion in Genetic Algorithm</see>
     /// </remarks>
     /// </summary>
-    public interface IReinsertion
+    public interface IReinsertion<T>
     {
         #region Properties
         /// <summary>
@@ -37,7 +37,7 @@ namespace GeneticSharp.Domain.Reinsertions
         /// <param name="population">The population.</param>
         /// <param name="offspring">The offspring.</param>
         /// <param name="parents">The parents.</param>
-        IList<IChromosome> SelectChromosomes(IPopulation population, IList<IChromosome> offspring, IList<IChromosome> parents);
+        IList<IChromosome<T>> SelectChromosomes(IPolulation<T> population, IList<IChromosome<T>> offspring, IList<IChromosome<T>> parents);
         #endregion
     }
 }

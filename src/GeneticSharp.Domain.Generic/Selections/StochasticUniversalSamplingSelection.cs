@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Populations;
+using GeneticSharp.Domain.Chromosomes.Generic;
+using GeneticSharp.Domain.Populations.Generic;
 using GeneticSharp.Domain.Randomizations;
 
-namespace GeneticSharp.Domain.Selections
+namespace GeneticSharp.Domain.Selections.Generic
 {
     /// <summary>
     /// Stochastic Universal Sampling.
@@ -25,12 +25,12 @@ namespace GeneticSharp.Domain.Selections
     /// </remarks>
     /// </summary>
     [DisplayName("Stochastic Universal Sampling")]
-    public class StochasticUniversalSamplingSelection : RouletteWheelSelection
+    public class StochasticUniversalSamplingSelection<T> : RouletteWheelSelection<T>
     {
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="GeneticSharp.Domain.Selections.StochasticUniversalSamplingSelection"/> class.
+        /// <see cref="GeneticSharp.Domain.Selections.Generic.StochasticUniversalSamplingSelection"/> class.
         /// </summary>
         public StochasticUniversalSamplingSelection()
         {
@@ -46,7 +46,7 @@ namespace GeneticSharp.Domain.Selections
         /// <returns>
         /// The selected chromosomes.
         /// </returns>
-        protected override IList<IChromosome> PerformSelectChromosomes(int number, Generation generation)
+        protected override IList<IChromosome<T>> PerformSelectChromosomes(int number, Generation<T> generation)
         {
             var chromosomes = generation.Chromosomes;
             var rouleteWheel = new List<double>();

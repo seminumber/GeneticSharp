@@ -1,6 +1,6 @@
-using GeneticSharp.Domain.Chromosomes;
+using GeneticSharp.Domain.Chromosomes.Generic;
 
-namespace GeneticSharp.Domain.Mutations
+namespace GeneticSharp.Domain.Mutations.Generic
 {
     /// <summary>
     /// Mutation is a genetic operator used to maintain genetic diversity from one generation of a population of genetic algorithm 
@@ -23,13 +23,13 @@ namespace GeneticSharp.Domain.Mutations
     /// </para>
     /// <see href="http://en.wikipedia.org/wiki/Mutation_(genetic_algorithm)"/> 
     /// </summary>
-    public interface IMutation : IChromosomeOperator
+    public interface IMutation<T> : IChromosomeOperator
     {
         /// <summary>
         /// Mutate the specified chromosome.
         /// </summary>
         /// <param name="chromosome">The chromosome.</param>
         /// <param name="probability">The probability to mutate each chromosome.</param>
-        void Mutate(IChromosome chromosome, float probability);
+        void Mutate(IChromosome<T> chromosome, float probability);
     }
 }

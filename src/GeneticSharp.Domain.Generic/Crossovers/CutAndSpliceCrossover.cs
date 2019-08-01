@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Chromosomes.Generic;
 using GeneticSharp.Domain.Randomizations;
 

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using GeneticSharp.Domain.Randomizations;
 
-namespace GeneticSharp.Domain.Mutations
+namespace GeneticSharp.Domain.Mutations.Generic
 {
     /// <summary>
 	/// Displacement Mutation.
@@ -15,11 +15,11 @@ namespace GeneticSharp.Domain.Mutations
 	/// </remarks>
 	/// </summary>
     [DisplayName("Displacement")]
-    public class DisplacementMutation : SequenceMutationBase
+    public class DisplacementMutation<T> : SequenceMutationBase<T>
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="DisplacementMutation"/> class.
+        /// Initializes a new instance of the <see cref="DisplacementMutation<T>"/> class.
         /// </summary>
         public DisplacementMutation()
         {
@@ -33,7 +33,7 @@ namespace GeneticSharp.Domain.Mutations
         /// </summary>
         /// <returns>The resulted sequence after mutation operation.</returns>
         /// <param name="sequence">The sequence to be mutated.</param>
-        protected override IEnumerable<T> MutateOnSequence<T>(IEnumerable<T> sequence)
+        protected override IEnumerable<T> MutateOnSequence(IEnumerable<T> sequence)
         {
             var geneToShift = DetermineGeneToShift(sequence.Count() - 1);
 

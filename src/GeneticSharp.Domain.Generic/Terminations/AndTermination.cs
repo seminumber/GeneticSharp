@@ -1,20 +1,21 @@
-﻿using System.ComponentModel;
+﻿using GeneticSharp.Domain.Generic;
+using System.ComponentModel;
 using System.Linq;
 
-namespace GeneticSharp.Domain.Terminations
+namespace GeneticSharp.Domain.Terminations.Generic
 {
     /// <summary>
     /// An termination where you can combine others ITerminations with a AND logical operator.
     /// </summary>
     [DisplayName("And")]
-    public class AndTermination : LogicalOperatorTerminationBase
+    public class AndTermination<T> : LogicalOperatorTerminationBase<T>
     {
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="AndTermination"/> class.
         /// </summary>
         /// <param name="terminations">The terminations.</param>
-        public AndTermination(params ITermination[] terminations) : base(terminations)
+        public AndTermination(params ITermination<T>[] terminations) : base(terminations)
         {
         }
         #endregion
@@ -27,7 +28,7 @@ namespace GeneticSharp.Domain.Terminations
         /// <returns>
         /// True if termination has been reached, otherwise false.
         /// </returns>
-        protected override bool PerformHasReached(IGeneticAlgorithm geneticAlgorithm)
+        protected override bool PerformHasReached(IGeneticAlgorithm<T> geneticAlgorithm)
         {
             return Terminations.All(t => t.HasReached(geneticAlgorithm));
         }

@@ -1,7 +1,8 @@
+using GeneticSharp.Domain.Generic;
 using System;
 using System.ComponentModel;
 
-namespace GeneticSharp.Domain.Terminations
+namespace GeneticSharp.Domain.Terminations.Generic
 {
     /// <summary>
     /// Time Evolving Termination.
@@ -10,11 +11,11 @@ namespace GeneticSharp.Domain.Terminations
     /// </remarks>
     /// </summary>
     [DisplayName("Time Evolving")]
-    public class TimeEvolvingTermination : TerminationBase
+    public class TimeEvolvingTermination<T> : TerminationBase<T>
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Terminations.TimeEvolvingTermination"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Terminations.Generic.TimeEvolvingTermination"/> class.
         /// </summary>
         /// <remarks>
         /// The default MaxTime is 1 minute.
@@ -24,7 +25,7 @@ namespace GeneticSharp.Domain.Terminations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Terminations.TimeEvolvingTermination"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Terminations.Generic.TimeEvolvingTermination"/> class.
         /// </summary>
         /// <param name="maxTime">The execution time to consider the termination has been reached.</param>
         public TimeEvolvingTermination(TimeSpan maxTime)
@@ -47,7 +48,7 @@ namespace GeneticSharp.Domain.Terminations
         /// </summary>
         /// <returns>True if termination has been reached, otherwise false.</returns>
         /// <param name="geneticAlgorithm">The genetic algorithm.</param>
-        protected override bool PerformHasReached(IGeneticAlgorithm geneticAlgorithm)
+        protected override bool PerformHasReached(IGeneticAlgorithm<T> geneticAlgorithm)
         {
             return geneticAlgorithm.TimeEvolving >= MaxTime;
         }

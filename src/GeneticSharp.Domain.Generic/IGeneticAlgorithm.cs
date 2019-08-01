@@ -1,12 +1,12 @@
 using System;
-using GeneticSharp.Domain.Chromosomes;
+using GeneticSharp.Domain.Chromosomes.Generic;
 
-namespace GeneticSharp.Domain
+namespace GeneticSharp.Domain.Generic
 {
     /// <summary>
     /// Defines a interface for a genetic algorithm.
     /// </summary>
-    public interface IGeneticAlgorithm
+    public interface IGeneticAlgorithm<T>
     {
         #region Properties
         /// <summary>
@@ -19,7 +19,7 @@ namespace GeneticSharp.Domain
         /// Gets the best chromosome.
         /// </summary>
         /// <value>The best chromosome.</value>
-        IChromosome BestChromosome { get; }
+        IChromosome<T> BestChromosome { get; }
 
         /// <summary>
         /// Gets the time evolving.

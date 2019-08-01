@@ -1,26 +1,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GeneticSharp.Domain.Chromosomes;
+using GeneticSharp.Domain.Chromosomes.Generic;
 using GeneticSharp.Infrastructure.Framework.Texts;
 using GeneticSharp.Infrastructure.Framework.Commons;
 using System.Diagnostics;
 
-namespace GeneticSharp.Domain.Populations
+namespace GeneticSharp.Domain.Populations.Generic
 {
     /// <summary>
     /// Represents a generation of a population.
     /// </summary>
     [DebuggerDisplay("{Number} = {BestChromosome.Fitness}")]
-    public sealed class Generation
+    public sealed class Generation<T>
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Populations.Generation"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Populations.Generic.Generation<T>"/> class.
         /// </summary>
         /// <param name="number">The generation number.</param>
         /// <param name="chromosomes">The chromosomes of the generation..</param>
-        public Generation(int number, IList<IChromosome> chromosomes)
+        public Generation(int number, IList<IChromosome<T>> chromosomes)
         {
             if (number < 1)
             {
@@ -56,13 +56,13 @@ namespace GeneticSharp.Domain.Populations
         /// Gets the chromosomes.
         /// </summary>
         /// <value>The chromosomes.</value>
-        public IList<IChromosome> Chromosomes { get; internal set; }
+        public IList<IChromosome<T>> Chromosomes { get; internal set; }
 
         /// <summary>
         /// Gets the best chromosome.
         /// </summary>
         /// <value>The best chromosome.</value>
-        public IChromosome BestChromosome { get; internal set; }
+        public IChromosome<T> BestChromosome { get; internal set; }
         #endregion
 
         #region Methods
@@ -90,7 +90,7 @@ namespace GeneticSharp.Domain.Populations
         /// </summary>
         /// <param name="chromosome">The chromosome to validate.</param>
         /// <returns>True if a chromosome is valid.</returns>
-        private static bool ValidateChromosome(IChromosome chromosome)
+        private static bool ValidateChromosome(IChromosome<T> chromosome)
         {
             if (!chromosome.Fitness.HasValue)
             {

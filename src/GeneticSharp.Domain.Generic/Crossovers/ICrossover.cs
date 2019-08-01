@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Chromosomes.Generic;
 
 namespace GeneticSharp.Domain.Crossovers.Generic

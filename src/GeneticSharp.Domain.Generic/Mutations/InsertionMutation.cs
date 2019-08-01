@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace GeneticSharp.Domain.Mutations
+namespace GeneticSharp.Domain.Mutations.Generic
 {
     /// <summary>
     /// Insertion Mutation.
@@ -12,7 +12,7 @@ namespace GeneticSharp.Domain.Mutations
     /// </remarks>
     /// </summary>
     [DisplayName("Insertion")]
-    public class InsertionMutation : DisplacementMutation
+    public class InsertionMutation<T> : DisplacementMutation<T>
     {
         #region Constructors
         /// <summary>

@@ -1,9 +1,9 @@
-﻿using GeneticSharp.Domain;
-using GeneticSharp.Domain.Crossovers;
-using GeneticSharp.Domain.Mutations;
-using GeneticSharp.Domain.Populations;
-using GeneticSharp.Domain.Selections;
-using GeneticSharp.Domain.Terminations;
+﻿using GeneticSharp.Domain.Generic;
+using GeneticSharp.Domain.Crossovers.Generic;
+using GeneticSharp.Domain.Mutations.Generic;
+using GeneticSharp.Domain.Populations.Generic;
+using GeneticSharp.Domain.Selections.Generic;
+using GeneticSharp.Domain.Terminations.Generic;
 using GeneticSharp.Infrastructure.Framework.Threading;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace TspWpf
 {
     public class TspGA
     {
-        GeneticAlgorithm ga;
+        GeneticAlgorithm<int> ga;
 
         CancellationTokenSource cts;
 
@@ -38,17 +38,17 @@ namespace TspWpf
             Fitness = new TspFitness(numCities, areaWidth, areaHeight);
             var chromosome = new TspChromosome(numCities);
 
-            var crossover = new OrderedCrossover();
-            var mutation = new ReverseSequenceMutation();
-            var selection = new EliteSelection();
-            var population = new Population(50, 100, chromosome);
-            ga = new GeneticAlgorithm(population, Fitness, selection, crossover, mutation);
+            var crossover = new OrderedCrossover<int>();
+            var mutation = new ReverseSequenceMutation<int>();
+            var selection = new EliteSelection<int>();
+            var population = new Population<int>(50, 100, chromosome);
+            ga = new GeneticAlgorithm<int>(population, Fitness, selection, crossover, mutation);
 
         }
 
         public void DesignStart()
         {
-            ga.Termination = new GenerationNumberTermination(1);
+            ga.Termination = new GenerationNumberTermination<int>(1);
             ga.Start();
         }
 
@@ -74,14 +74,15 @@ namespace TspWpf
         private async Task InternalLoopAsync(CancellationToken token)
         {
             // run until cancelled.. cancellation will indicate termination
-            ga.Termination = new GenerationNumberTermination(1);
-            ga.TaskExecutor = new ParallelTaskExecutor() { MinThreads = 2, MaxThreads = 8 };
+            ga.Termination = new GenerationNumberTermination<int>(1);
+            //ga.TaskExecutor = new ParallelTaskExecutor() { MinThreads = 2, MaxThreads = 8 };
+            ga.TaskExecutor = new LinearTaskExecutor();
             await Task.Run(ga.Start);
 
             while(!token.IsCancellationRequested)
             {
                 int next = ga.GenerationsNumber + 30;
-                ga.Termination = new GenerationNumberTermination(next);
+                ga.Termination = new GenerationNumberTermination<int>(next);
                 if (GenerationRan != null)
                     ga.GenerationRan += (_, __) => GenerationRan.Invoke();
                 await Task.Run(ga.Resume);

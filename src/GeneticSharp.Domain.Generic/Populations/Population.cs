@@ -1,24 +1,24 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using GeneticSharp.Domain.Chromosomes;
+using GeneticSharp.Domain.Chromosomes.Generic;
 using GeneticSharp.Infrastructure.Framework.Commons;
 
-namespace GeneticSharp.Domain.Populations
+namespace GeneticSharp.Domain.Populations.Generic
 {
     /// <summary>
     /// Represents a population of candidate solutions (chromosomes).
     /// </summary>
-    public class Population : IPopulation
+    public class Population<T> : IPolulation<T>
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Populations.Population"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Populations.Generic.Population<T>"/> class.
         /// </summary>
         /// <param name="minSize">The minimum size (chromosomes).</param>
         /// <param name="maxSize">The maximum size (chromosomes).</param>
         /// <param name="adamChromosome">The original chromosome of all population ;).</param>
-        public Population(int minSize, int maxSize, IChromosome adamChromosome)
+        public Population(int minSize, int maxSize, IChromosome<T> adamChromosome)
         {
             if (minSize < 2)
             {
@@ -36,8 +36,8 @@ namespace GeneticSharp.Domain.Populations
             MinSize = minSize;
             MaxSize = maxSize;
             AdamChromosome = adamChromosome;
-            Generations = new List<Generation>();
-            GenerationStrategy = new PerformanceGenerationStrategy(10);
+            Generations = new List<Generation<T>>();
+            GenerationStrategy = new PerformanceGenerationStrategy<T>(10);
         }
         #endregion
 
@@ -62,13 +62,13 @@ namespace GeneticSharp.Domain.Populations
         /// </summary>
         /// <value>The generations.</value>
         [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "Parent classes need to set it.")]
-        public IList<Generation> Generations { get; protected set; }
+        public IList<Generation<T>> Generations { get; protected set; }
 
         /// <summary>
         /// Gets or sets the current generation.
         /// </summary>
         /// <value>The current generation.</value>
-        public Generation CurrentGeneration { get; protected set; }
+        public Generation<T> CurrentGeneration { get; protected set; }
 
         /// <summary>
         /// Gets or sets the total number of generations executed.
@@ -94,18 +94,18 @@ namespace GeneticSharp.Domain.Populations
         /// Gets or sets the best chromosome.
         /// </summary>
         /// <value>The best chromosome.</value>
-        public IChromosome BestChromosome { get; protected set; }
+        public IChromosome<T> BestChromosome { get; protected set; }
 
         /// <summary>
         /// Gets or sets the generation strategy.
         /// </summary>
-        public IGenerationStrategy GenerationStrategy { get; set; }
+        public IGenerationStrategy<T> GenerationStrategy { get; set; }
 
         /// <summary>
         /// Gets or sets the original chromosome of all population.
         /// </summary>
         /// <value>The adam chromosome.</value>
-        protected IChromosome AdamChromosome { get; set; }
+        protected IChromosome<T> AdamChromosome { get; set; }
         #endregion
 
         #region Public methods
@@ -114,10 +114,10 @@ namespace GeneticSharp.Domain.Populations
         /// </summary>
         public virtual void CreateInitialGeneration()
         {
-            Generations = new List<Generation>();
+            Generations = new List<Generation<T>>();
             GenerationsNumber = 0;
 
-            var chromosomes = new List<IChromosome>();
+            var chromosomes = new List<IChromosome<T>>();
 
             for (int i = 0; i < MinSize; i++)
             {
@@ -140,12 +140,12 @@ namespace GeneticSharp.Domain.Populations
         /// Creates a new generation.
         /// </summary>
         /// <param name="chromosomes">The chromosomes for new generation.</param>
-        public virtual void CreateNewGeneration(IList<IChromosome> chromosomes)
+        public virtual void CreateNewGeneration(IList<IChromosome<T>> chromosomes)
         {
             ExceptionHelper.ThrowIfNull("chromosomes", chromosomes);
             chromosomes.ValidateGenes();
 
-            CurrentGeneration = new Generation(++GenerationsNumber, chromosomes);
+            CurrentGeneration = new Generation<T>(++GenerationsNumber, chromosomes);
             Generations.Add(CurrentGeneration);
             GenerationStrategy.RegisterNewGeneration(this);
         }

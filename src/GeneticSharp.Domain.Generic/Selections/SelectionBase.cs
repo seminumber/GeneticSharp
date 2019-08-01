@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Populations;
+using GeneticSharp.Domain.Chromosomes.Generic;
+using GeneticSharp.Domain.Populations.Generic;
 using GeneticSharp.Infrastructure.Framework.Texts;
 using GeneticSharp.Infrastructure.Framework.Commons;
 using System.Linq;
 
-namespace GeneticSharp.Domain.Selections
+namespace GeneticSharp.Domain.Selections.Generic
 {
     /// <summary>
     /// A base class for selection.
     /// </summary>
-    public abstract class SelectionBase : ISelection
+    public abstract class Selection<T> : ISelection<T>
     {
         #region Fields
         private readonly int m_minNumberChromosomes;
@@ -19,10 +19,10 @@ namespace GeneticSharp.Domain.Selections
 
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Selections.SelectionBase"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Selections.Generic.Selection<T>"/> class.
         /// </summary>
         /// <param name="minNumberChromosomes">Minimum number chromosomes support to be selected.</param>
-        protected SelectionBase(int minNumberChromosomes)
+        protected Selection(int minNumberChromosomes)
         {
             m_minNumberChromosomes = minNumberChromosomes;
         }
@@ -35,7 +35,7 @@ namespace GeneticSharp.Domain.Selections
         /// <returns>The selected chromosomes.</returns>
         /// <param name="number">The number of chromosomes to select.</param>
         /// <param name="generation">The generation where the selection will be made.</param>
-        public IList<IChromosome> SelectChromosomes(int number, Generation generation)
+        public IList<IChromosome<T>> SelectChromosomes(int number, Generation<T> generation)
         {
             if (number < m_minNumberChromosomes)
             {
@@ -46,7 +46,7 @@ namespace GeneticSharp.Domain.Selections
 
             if (generation.Chromosomes.Any(c => !c.Fitness.HasValue))
             {
-                throw new SelectionException(
+                throw new SelectionException<T>(
                        this,
                        "There are chromosomes with null fitness.");
             }
@@ -60,7 +60,7 @@ namespace GeneticSharp.Domain.Selections
         /// <returns>The selected chromosomes.</returns>
         /// <param name="number">The number of chromosomes to select.</param>
         /// <param name="generation">The generation where the selection will be made.</param>
-        protected abstract IList<IChromosome> PerformSelectChromosomes(int number, Generation generation);
+        protected abstract IList<IChromosome<T>> PerformSelectChromosomes(int number, Generation<T> generation);
         #endregion
     }
 }

@@ -1,5 +1,5 @@
-﻿using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Fitnesses;
+﻿using GeneticSharp.Domain.Chromosomes.Generic;
+using GeneticSharp.Domain.Fitnesses.Generic;
 using GeneticSharp.Domain.Randomizations;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TspWpf
 {
-    public class TspFitness : IFitness
+    public class TspFitness : IFitness<int>
     {
         int areaWidth;
         int areaHeight;
@@ -32,16 +32,14 @@ namespace TspWpf
                 RandomizationProvider.Current.GetDouble(0, areaHeight));
         }
 
-        public double Evaluate(IChromosome chromosome)
+        public double Evaluate(IChromosome<int> chromosome)
         {
-            var genes = chromosome.GetGenes();
-            var indices = genes.Select(w => Convert.ToInt32(w.Value))
-                               .ToList();
-            indices.Add(indices.First());
+            var indices = chromosome.GetGenes();
             //pairwise
-            double sum = indices.Skip(1).Zip(indices,
-                                             (second, first) =>
-                                                 Cities[first].DistanceTo(Cities[second]))
+            double sum = indices.Skip(1).Concat(new[] { indices.First() })
+                                .Zip(indices,
+                                        (second, first) =>
+                                            Cities[first].DistanceTo(Cities[second]))
                                 .Sum();
             var fitness = 1.0 - sum / 1000 / Cities.Count;
             ((TspChromosome)chromosome).Distance = sum;

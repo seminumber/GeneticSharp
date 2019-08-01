@@ -2,19 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Crossovers;
-using GeneticSharp.Domain.Fitnesses;
-using GeneticSharp.Domain.Mutations;
-using GeneticSharp.Domain.Populations;
-using GeneticSharp.Domain.Reinsertions;
-using GeneticSharp.Domain.Selections;
-using GeneticSharp.Domain.Terminations;
+using GeneticSharp.Domain.Chromosomes.Generic;
+using GeneticSharp.Domain.Crossovers.Generic;
+using GeneticSharp.Domain.Fitnesses.Generic;
+using GeneticSharp.Domain.Mutations.Generic;
+using GeneticSharp.Domain.Populations.Generic;
+using GeneticSharp.Domain.Reinsertions.Generic;
+using GeneticSharp.Domain.Selections.Generic;
+using GeneticSharp.Domain.Terminations.Generic;
 using GeneticSharp.Infrastructure.Framework.Texts;
 using GeneticSharp.Infrastructure.Framework.Threading;
 using GeneticSharp.Infrastructure.Framework.Commons;
 
-namespace GeneticSharp.Domain
+namespace GeneticSharp.Domain.Generic
 {
     #region Enums
     /// <summary>
@@ -61,7 +61,7 @@ namespace GeneticSharp.Domain
     /// </para>
     /// <see href="http://http://en.wikipedia.org/wiki/Genetic_algorithm">Wikipedia</see>
     /// </summary>
-    public sealed class GeneticAlgorithm : IGeneticAlgorithm
+    public sealed class GeneticAlgorithm<T> : IGeneticAlgorithm<T>
     {
         #region Constants
         /// <summary>
@@ -84,7 +84,7 @@ namespace GeneticSharp.Domain
 
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.GeneticAlgorithm"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.GeneticAlgorithm<T>"/> class.
         /// </summary>
         /// <param name="population">The chromosomes population.</param>
         /// <param name="fitness">The fitness evaluation function.</param>
@@ -92,11 +92,11 @@ namespace GeneticSharp.Domain
         /// <param name="crossover">The crossover operator.</param>
         /// <param name="mutation">The mutation operator.</param>
         public GeneticAlgorithm(
-                          IPopulation population,
-                          IFitness fitness,
-                          ISelection selection,
-                          ICrossover crossover,
-                          IMutation mutation)
+                          IPolulation<T> population,
+                          IFitness<T> fitness,
+                          ISelection<T> selection,
+                          ICrossover<T> crossover,
+                          IMutation<T> mutation)
         {
             ExceptionHelper.ThrowIfNull("population", population);
             ExceptionHelper.ThrowIfNull("fitness", fitness);
@@ -109,15 +109,15 @@ namespace GeneticSharp.Domain
             Selection = selection;
             Crossover = crossover;
             Mutation = mutation;
-            Reinsertion = new ElitistReinsertion();
-            Termination = new GenerationNumberTermination(1);
+            Reinsertion = new ElitistReinsertion<T>();
+            Termination = new GenerationNumberTermination<T>(1);
 
             CrossoverProbability = DefaultCrossoverProbability;
             MutationProbability = DefaultMutationProbability;
             TimeEvolving = TimeSpan.Zero;
             State = GeneticAlgorithmState.NotStarted;
             TaskExecutor = new LinearTaskExecutor();
-            OperatorsStrategy = new DefaultOperatorsStrategy();
+            OperatorsStrategy = new DefaultOperatorsStrategy<T>();
         }
         #endregion
 
@@ -142,29 +142,29 @@ namespace GeneticSharp.Domain
         /// <summary>
         /// Gets the operators strategy
         /// </summary>
-        public IOperatorsStrategy OperatorsStrategy { get; set; }
+        public IOperatorStrategy<T> OperatorsStrategy { get; set; }
 
         /// <summary>
         /// Gets the population.
         /// </summary>
         /// <value>The population.</value>
-        public IPopulation Population { get; private set; }
+        public IPolulation<T> Population { get; private set; }
 
         /// <summary>
         /// Gets the fitness function.
         /// </summary>
-        public IFitness Fitness { get; private set; }
+        public IFitness<T> Fitness { get; private set; }
 
         /// <summary>
         /// Gets or sets the selection operator.
         /// </summary>
-        public ISelection Selection { get; set; }
+        public ISelection<T> Selection { get; set; }
 
         /// <summary>
         /// Gets or sets the crossover operator.
         /// </summary>
         /// <value>The crossover.</value>
-        public ICrossover Crossover { get; set; }
+        public ICrossover<T> Crossover { get; set; }
 
         /// <summary>
         /// Gets or sets the crossover probability.
@@ -174,7 +174,7 @@ namespace GeneticSharp.Domain
         /// <summary>
         /// Gets or sets the mutation operator.
         /// </summary>
-        public IMutation Mutation { get; set; }
+        public IMutation<T> Mutation { get; set; }
 
         /// <summary>
         /// Gets or sets the mutation probability.
@@ -184,12 +184,12 @@ namespace GeneticSharp.Domain
         /// <summary>
         /// Gets or sets the reinsertion operator.
         /// </summary>
-        public IReinsertion Reinsertion { get; set; }
+        public IReinsertion<T> Reinsertion { get; set; }
 
         /// <summary>
         /// Gets or sets the termination condition.
         /// </summary>
-        public ITermination Termination { get; set; }
+        public ITermination<T> Termination { get; set; }
 
         /// <summary>
         /// Gets the generations number.
@@ -207,7 +207,7 @@ namespace GeneticSharp.Domain
         /// Gets the best chromosome.
         /// </summary>
         /// <value>The best chromosome.</value>
-        public IChromosome BestChromosome
+        public IChromosome<T> BestChromosome
         {
             get
             {
@@ -438,7 +438,7 @@ namespace GeneticSharp.Domain
         /// <param name="chromosome">The chromosome.</param>
         private void RunEvaluateFitness(object chromosome)
         {
-            var c = chromosome as IChromosome;
+            var c = chromosome as IChromosome<T>;
 
             try
             {
@@ -446,7 +446,7 @@ namespace GeneticSharp.Domain
             }
             catch (Exception ex)
             {
-                throw new FitnessException(Fitness, "Error executing Fitness.Evaluate for chromosome: {0}".With(ex.Message), ex);
+                throw new FitnessException<T>(Fitness, "Error executing Fitness.Evaluate for chromosome: {0}".With(ex.Message), ex);
             }
         }
 
@@ -454,7 +454,7 @@ namespace GeneticSharp.Domain
         /// Selects the parents.
         /// </summary>
         /// <returns>The parents.</returns>
-        private IList<IChromosome> SelectParents()
+        private IList<IChromosome<T>> SelectParents()
         {
             return Selection.SelectChromosomes(Population.MinSize, Population.CurrentGeneration);
         }
@@ -464,7 +464,7 @@ namespace GeneticSharp.Domain
         /// </summary>
         /// <param name="parents">The parents.</param>
         /// <returns>The result chromosomes.</returns>
-        private IList<IChromosome> Cross(IList<IChromosome> parents)
+        private IList<IChromosome<T>> Cross(IList<IChromosome<T>> parents)
         {
             return OperatorsStrategy.Cross(Population, Crossover, CrossoverProbability, parents);
         }
@@ -473,7 +473,7 @@ namespace GeneticSharp.Domain
         /// Mutate the specified chromosomes.
         /// </summary>
         /// <param name="chromosomes">The chromosomes.</param>
-        private void Mutate(IList<IChromosome> chromosomes)
+        private void Mutate(IList<IChromosome<T>> chromosomes)
         {
             OperatorsStrategy.Mutate(Mutation, MutationProbability, chromosomes);
         }
@@ -486,7 +486,7 @@ namespace GeneticSharp.Domain
         /// <returns>
         /// The reinserted chromosomes.
         /// </returns>
-        private IList<IChromosome> Reinsert(IList<IChromosome> offspring, IList<IChromosome> parents)
+        private IList<IChromosome<T>> Reinsert(IList<IChromosome<T>> offspring, IList<IChromosome<T>> parents)
         {
             return Reinsertion.SelectChromosomes(Population, offspring, parents);
         }

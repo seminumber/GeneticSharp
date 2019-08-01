@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Populations;
+using GeneticSharp.Domain.Chromosomes.Generic;
+using GeneticSharp.Domain.Populations.Generic;
 
-namespace GeneticSharp.Domain.Reinsertions
+namespace GeneticSharp.Domain.Reinsertions.Generic
 {
     /// <summary>
     /// Elitist reinsertion.
@@ -14,11 +14,11 @@ namespace GeneticSharp.Domain.Reinsertions
     /// </remarks>
     /// </summary>
     [DisplayName("Elitist")]
-    public class ElitistReinsertion : ReinsertionBase
+    public class ElitistReinsertion<T> : ReinsertionBase<T>
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Reinsertions.ElitistReinsertion"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Reinsertions.Generic.ElitistReinsertion<T>"/> class.
         /// </summary>
         public ElitistReinsertion() : base(false, true)
         {
@@ -33,7 +33,7 @@ namespace GeneticSharp.Domain.Reinsertions
         /// <param name="population">The population.</param>
         /// <param name="offspring">The offspring.</param>
         /// <param name="parents">The parents.</param>
-        protected override IList<IChromosome> PerformSelectChromosomes(IPopulation population, IList<IChromosome> offspring, IList<IChromosome> parents)
+        protected override IList<IChromosome<T>> PerformSelectChromosomes(IPolulation<T> population, IList<IChromosome<T>> offspring, IList<IChromosome<T>> parents)
         {
             var diff = population.MinSize - offspring.Count;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using GeneticSharp.Domain.Chromosomes.Generic;
-using GeneticSharp.Domain.Mutations;
+using GeneticSharp.Domain.Mutations.Generic;
 
 namespace GeneticSharp.Domain.Crossovers.Generic
 {
@@ -37,7 +37,7 @@ namespace GeneticSharp.Domain.Crossovers.Generic
         private readonly int _threshold;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.VotingRecombinationCrossover"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.Generic.VotingRecombinationCrossover"/> class.
         /// </summary>
         /// <param name="parentsNumber">The number of parents need for cross.</param>
         /// <param name="threshold">An element occurs at least the threshold number of times, it is copied into the offspring</param>
@@ -54,7 +54,7 @@ namespace GeneticSharp.Domain.Crossovers.Generic
         }
 
         // <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.VotingRecombinationCrossover"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.Generic.VotingRecombinationCrossover"/> class.
         /// </summary>
         public VotingRecombinationCrossover() : this(3, 2)
         {
@@ -93,7 +93,7 @@ namespace GeneticSharp.Domain.Crossovers.Generic
             // The remaining positions of the offspring are filled with mutations.
             if (mutableGenesIndexes.Count > 0)
             {
-                new UniformMutation(mutableGenesIndexes.ToArray())
+                new UniformMutation<T>(mutableGenesIndexes.ToArray())
                     .Mutate(child, 1);
             }
 

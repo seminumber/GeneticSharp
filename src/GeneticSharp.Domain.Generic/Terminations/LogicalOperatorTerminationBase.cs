@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using GeneticSharp.Infrastructure.Framework.Texts;
 using GeneticSharp.Infrastructure.Framework.Commons;
+using GeneticSharp.Domain.Generic;
 
-namespace GeneticSharp.Domain.Terminations
+namespace GeneticSharp.Domain.Terminations.Generic
 {
     /// <summary>
     /// A base class for logical operator terminations.
     /// </summary>
-    public abstract class LogicalOperatorTerminationBase : ITermination
+    public abstract class LogicalOperatorTerminationBase<T> : ITermination<T>
     {
         #region Fields
         private readonly int m_minOperands;
@@ -17,20 +18,20 @@ namespace GeneticSharp.Domain.Terminations
 
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogicalOperatorTerminationBase"/> class.
+        /// Initializes a new instance of the <see cref="LogicalOperatorTerminationBase<T>"/> class.
         /// </summary>
         /// <param name="minOperands">The minimum number of operands.</param>
         protected LogicalOperatorTerminationBase(int minOperands)
         {
             m_minOperands = minOperands;
-            Terminations = new List<ITermination>();
+            Terminations = new List<ITermination<T>>();
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogicalOperatorTerminationBase"/> class.
+        /// Initializes a new instance of the <see cref="LogicalOperatorTerminationBase<T>"/> class.
         /// </summary>
         /// <param name="terminations">The terminations.</param>
-        protected LogicalOperatorTerminationBase(params ITermination[] terminations)
+        protected LogicalOperatorTerminationBase(params ITermination<T>[] terminations)
             : this(2)
         {
             if (terminations != null)
@@ -47,7 +48,7 @@ namespace GeneticSharp.Domain.Terminations
         /// <summary>
         /// Gets the terminations.
         /// </summary>
-        protected IList<ITermination> Terminations { get; private set; }
+        protected IList<ITermination<T>> Terminations { get; private set; }
         #endregion
 
         #region Properties
@@ -55,7 +56,7 @@ namespace GeneticSharp.Domain.Terminations
         /// Adds the termination.
         /// </summary>
         /// <param name="termination">The termination.</param>
-        public void AddTermination(ITermination termination)
+        public void AddTermination(ITermination<T> termination)
         {
             ExceptionHelper.ThrowIfNull("termination", termination);
 
@@ -69,7 +70,7 @@ namespace GeneticSharp.Domain.Terminations
         /// <returns>
         /// True if termination has been reached, otherwise false.
         /// </returns>
-        public bool HasReached(IGeneticAlgorithm geneticAlgorithm)
+        public bool HasReached(IGeneticAlgorithm<T> geneticAlgorithm)
         {
             ExceptionHelper.ThrowIfNull("geneticAlgorithm", geneticAlgorithm);
 
@@ -82,9 +83,9 @@ namespace GeneticSharp.Domain.Terminations
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String"/> that represents the current <see cref="GeneticSharp.Domain.Terminations.LogicalOperatorTerminationBase"/>.
+        /// Returns a <see cref="System.String"/> that represents the current <see cref="GeneticSharp.Domain.Terminations.Generic.LogicalOperatorTerminationBase<T>"/>.
         /// </summary>
-        /// <returns>A <see cref="System.String"/> that represents the current <see cref="GeneticSharp.Domain.Terminations.LogicalOperatorTerminationBase"/>.</returns>
+        /// <returns>A <see cref="System.String"/> that represents the current <see cref="GeneticSharp.Domain.Terminations.Generic.LogicalOperatorTerminationBase<T>"/>.</returns>
         public override string ToString()
         {
             return "{0} ({1})".With(GetType().Name, String.Join(", ", Terminations.Select(t => t.ToString()).ToArray()));
@@ -97,7 +98,7 @@ namespace GeneticSharp.Domain.Terminations
         /// <returns>
         /// True if termination has been reached, otherwise false.
         /// </returns>
-        protected abstract bool PerformHasReached(IGeneticAlgorithm geneticAlgorithm);
+        protected abstract bool PerformHasReached(IGeneticAlgorithm<T> geneticAlgorithm);
         #endregion
     }
 }

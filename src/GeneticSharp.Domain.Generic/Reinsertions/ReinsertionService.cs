@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using GeneticSharp.Infrastructure.Framework.Reflection;
 
-namespace GeneticSharp.Domain.Reinsertions
+namespace GeneticSharp.Domain.Reinsertions.Generic
 {
     /// <summary>
     /// Reinsertion service.
@@ -16,9 +16,9 @@ namespace GeneticSharp.Domain.Reinsertions
         /// </summary>
         /// <returns>All available reinsertion types.</returns>
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-        public static IList<Type> GetReinsertionTypes()
+        public static IList<Type> GetReinsertionTypes<T>()
         {
-            return TypeHelper.GetTypesByInterface<IReinsertion>();
+            return TypeHelper.GetTypesByInterface<IReinsertion<T>>();
         }
 
         /// <summary>
@@ -26,9 +26,9 @@ namespace GeneticSharp.Domain.Reinsertions
         /// </summary>
         /// <returns>The reinsertion names.</returns>
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-        public static IList<string> GetReinsertionNames()
+        public static IList<string> GetReinsertionNames<T>()
         {
-            return TypeHelper.GetDisplayNamesByInterface<IReinsertion>();
+            return TypeHelper.GetDisplayNamesByInterface<IReinsertion<T>>();
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace GeneticSharp.Domain.Reinsertions
         /// <returns>The reinsertion implementation instance.</returns>
         /// <param name="name">The reinsertion name.</param>
         /// <param name="constructorArgs">Constructor arguments.</param>
-        public static IReinsertion CreateReinsertionByName(string name, params object[] constructorArgs)
+        public static IReinsertion<T> CreateReinsertionByName<T>(string name, params object[] constructorArgs)
         {
-            return TypeHelper.CreateInstanceByName<IReinsertion>(name, constructorArgs);
+            return TypeHelper.CreateInstanceByName<IReinsertion<T>>(name, constructorArgs);
         }
 
         /// <summary>
@@ -47,9 +47,9 @@ namespace GeneticSharp.Domain.Reinsertions
         /// </summary>
         /// <returns>The reinsertion type.</returns>
         /// <param name="name">The name of reinsertion.</param>
-        public static Type GetReinsertionTypeByName(string name)
+        public static Type GetReinsertionTypeByName<T>(string name)
         {
-            return TypeHelper.GetTypeByName<IReinsertion>(name);
+            return TypeHelper.GetTypeByName<IReinsertion<T>>(name);
         }
         #endregion
     }

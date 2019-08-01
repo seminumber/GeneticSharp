@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using GeneticSharp.Domain.Chromosomes;
+using GeneticSharp.Domain.Chromosomes.Generic;
 
-namespace GeneticSharp.Domain.Populations
+namespace GeneticSharp.Domain.Populations.Generic
 {
     /// <summary>
     /// Defines an interface for a population of candidate solutions (chromosomes).
     /// </summary>
-    public interface IPopulation
+    public interface IPolulation<T>
     {
         #region Events
         /// <summary>
@@ -29,13 +29,13 @@ namespace GeneticSharp.Domain.Populations
         /// </remarks>
         /// </summary>
         /// <value>The generations.</value>
-        IList<Generation> Generations { get; }
+        IList<Generation<T>> Generations { get; }
 
         /// <summary>
         /// Gets the current generation.
         /// </summary>
         /// <value>The current generation.</value>
-        Generation CurrentGeneration { get; }
+        Generation<T> CurrentGeneration { get; }
 
         /// <summary>
         /// Gets the total number of generations executed.
@@ -61,12 +61,12 @@ namespace GeneticSharp.Domain.Populations
         /// Gets the best chromosome.
         /// </summary>
         /// <value>The best chromosome.</value>
-        IChromosome BestChromosome { get; }
+        IChromosome<T> BestChromosome { get; }
 
         /// <summary>
         /// Gets or sets the generation strategy.
         /// </summary>
-        IGenerationStrategy GenerationStrategy { get; set; }
+        IGenerationStrategy<T> GenerationStrategy { get; set; }
         #endregion
 
         #region Methods
@@ -79,7 +79,7 @@ namespace GeneticSharp.Domain.Populations
         /// Creates a new generation.
         /// </summary>
         /// <param name="chromosomes">The chromosomes for new generation.</param>
-        void CreateNewGeneration(IList<IChromosome> chromosomes);
+        void CreateNewGeneration(IList<IChromosome<T>> chromosomes);
 
         /// <summary>
         /// Ends the current generation.

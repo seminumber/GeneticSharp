@@ -40,9 +40,9 @@ namespace GeneticSharp.Domain.Chromosomes.Generic
         /// Validates the chromosomes.
         /// </summary>
         /// <param name="chromosomes">The chromosomes.</param>
-        public static void ValidateGenes<T>(this IList<IChromosome<T>> chromosomes) where T: IGene
+        public static void ValidateGenes<T>(this IList<IChromosome<T>> chromosomes)
         {
-            if (chromosomes.Any(c => c.GetGenes().Any(g => g.Value == null)))
+            if (chromosomes.Any(c => c.GetGenes().Any(g => g == null)))
             {
                 throw new InvalidOperationException("The chromosome '{0}' is generating genes with null value.".With(chromosomes.First().GetType().Name));
             }
@@ -52,9 +52,9 @@ namespace GeneticSharp.Domain.Chromosomes.Generic
         /// Validates the chromosome.
         /// </summary>
         /// <param name="chromosome">The chromosomes.</param>
-        public static void ValidateGenes<T>(this IChromosome<T> chromosome) where T : IGene
+        public static void ValidateGenes<T>(this IChromosome<T> chromosome)
         {
-            if (chromosome != null && chromosome.GetGenes().Any(g => g.Value == null))
+            if (chromosome != null && chromosome.GetGenes().Any(g => g == null))
             {
                 throw new InvalidOperationException("The chromosome '{0}' is generating genes with null value.".With(chromosome.GetType().Name));
             }

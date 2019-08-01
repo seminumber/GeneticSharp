@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Populations;
+using GeneticSharp.Domain.Chromosomes.Generic;
+using GeneticSharp.Domain.Populations.Generic;
 using GeneticSharp.Domain.Randomizations;
 
-namespace GeneticSharp.Domain.Reinsertions
+namespace GeneticSharp.Domain.Reinsertions.Generic
 {
     /// <summary>
     /// Uniform Reinsertion.
@@ -14,11 +14,11 @@ namespace GeneticSharp.Domain.Reinsertions
     /// </remarks>
     /// </summary>
     [DisplayName("Uniform")]
-    public class UniformReinsertion : ReinsertionBase
+    public class UniformReinsertion<T> : ReinsertionBase<T>
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Reinsertions.UniformReinsertion"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Reinsertions.Generic.UniformReinsertion"/> class.
         /// </summary>
         public UniformReinsertion() : base(false, true)
         {
@@ -33,11 +33,11 @@ namespace GeneticSharp.Domain.Reinsertions
         /// <param name="population">The population.</param>
         /// <param name="offspring">The offspring.</param>
         /// <param name="parents">The parents.</param>
-        protected override IList<IChromosome> PerformSelectChromosomes(IPopulation population, IList<IChromosome> offspring, IList<IChromosome> parents)
+        protected override IList<IChromosome<T>> PerformSelectChromosomes(IPolulation<T> population, IList<IChromosome<T>> offspring, IList<IChromosome<T>> parents)
         {
             if (offspring.Count == 0)
             {
-                throw new ReinsertionException(this, "The minimum size of the offspring is 1.");
+                throw new ReinsertionException<T>(this, "The minimum size of the offspring is 1.");
             }
 
             var rnd = RandomizationProvider.Current;

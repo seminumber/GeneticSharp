@@ -208,8 +208,8 @@ namespace GeneticSharp.Domain.Chromosomes.Generic
                         .With(availableSpaceLength, startIndex, genesToBeReplacedLength));
                 }
 
-                for (int i = 0; i < availableSpaceLength; i++)
-                    m_genes[i] = genes[i + startIndex];
+                for (int i = 0; i < genesToBeReplacedLength; i++)
+                    m_genes[i + startIndex] = genes[i];
                 //Array.Copy(genes, 0, m_genes, startIndex, genes.Length);
 
                 Fitness = null;
@@ -278,11 +278,11 @@ namespace GeneticSharp.Domain.Chromosomes.Generic
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="System.Object"/> is equal to the current <see cref="GeneticSharp.Domain.Chromosomes.ChromosomeBase"/>.
+        /// Determines whether the specified <see cref="System.Object"/> is equal to the current <see cref="GeneticSharp.Domain.Chromosomes.Generic.ChromosomeBase"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="System.Object"/> to compare with the current <see cref="GeneticSharp.Domain.Chromosomes.ChromosomeBase"/>.</param>
+        /// <param name="obj">The <see cref="System.Object"/> to compare with the current <see cref="GeneticSharp.Domain.Chromosomes.Generic.ChromosomeBase"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="System.Object"/> is equal to the current
-        /// <see cref="GeneticSharp.Domain.Chromosomes.ChromosomeBase"/>; otherwise, <c>false</c>.</returns>
+        /// <see cref="GeneticSharp.Domain.Chromosomes.Generic.ChromosomeBase"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(this, obj))

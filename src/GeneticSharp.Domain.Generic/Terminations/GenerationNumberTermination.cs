@@ -1,6 +1,7 @@
 using System.ComponentModel;
+using GeneticSharp.Domain.Generic;
 
-namespace GeneticSharp.Domain.Terminations
+namespace GeneticSharp.Domain.Terminations.Generic
 {
     /// <summary>
     /// Generation number termination.
@@ -9,11 +10,11 @@ namespace GeneticSharp.Domain.Terminations
     /// </remarks>
     /// </summary>
     [DisplayName("Generation Number")]
-    public class GenerationNumberTermination : TerminationBase
+    public class GenerationNumberTermination<T> : TerminationBase<T>
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Terminations.GenerationNumberTermination"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Terminations.Generic.GenerationNumberTermination<T>"/> class.
         /// </summary>
         /// <remarks>
         /// The default expected generation number is 100.
@@ -23,7 +24,7 @@ namespace GeneticSharp.Domain.Terminations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Terminations.GenerationNumberTermination"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Terminations.Generic.GenerationNumberTermination<T>"/> class.
         /// </summary>
         /// <param name="expectedGenerationNumber">The generation number to consider the termination has been reached.</param>
         public GenerationNumberTermination(int expectedGenerationNumber)
@@ -46,7 +47,7 @@ namespace GeneticSharp.Domain.Terminations
         /// </summary>
         /// <returns>True if termination has been reached, otherwise false.</returns>
         /// <param name="geneticAlgorithm">The genetic algorithm.</param>
-        protected override bool PerformHasReached(IGeneticAlgorithm geneticAlgorithm)
+        protected override bool PerformHasReached(IGeneticAlgorithm<T> geneticAlgorithm)
         {
             return geneticAlgorithm.GenerationsNumber >= ExpectedGenerationNumber;
         }

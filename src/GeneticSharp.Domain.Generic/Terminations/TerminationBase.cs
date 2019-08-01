@@ -1,12 +1,13 @@
 using GeneticSharp.Infrastructure.Framework.Texts;
 using GeneticSharp.Infrastructure.Framework.Commons;
+using GeneticSharp.Domain.Generic;
 
-namespace GeneticSharp.Domain.Terminations
+namespace GeneticSharp.Domain.Terminations.Generic
 {
     /// <summary>
     /// Base class for ITerminations implementations.
     /// </summary>
-    public abstract class TerminationBase : ITermination
+    public abstract class TerminationBase<T> : ITermination<T>
     {
         #region Fields
         private bool m_hasReached;
@@ -18,7 +19,7 @@ namespace GeneticSharp.Domain.Terminations
         /// </summary>
         /// <returns>True if termination has been reached, otherwise false.</returns>
         /// <param name="geneticAlgorithm">The genetic algorithm.</param>
-        public bool HasReached(IGeneticAlgorithm geneticAlgorithm)
+        public bool HasReached(IGeneticAlgorithm<T> geneticAlgorithm)
         {
             ExceptionHelper.ThrowIfNull("geneticAlgorithm", geneticAlgorithm);
 
@@ -28,9 +29,9 @@ namespace GeneticSharp.Domain.Terminations
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String"/> that represents the current <see cref="GeneticSharp.Domain.Terminations.LogicalOperatorTerminationBase"/>.
+        /// Returns a <see cref="System.String"/> that represents the current <see cref="GeneticSharp.Domain.Terminations.Generic.LogicalOperatorTerminationBase<T>"/>.
         /// </summary>
-        /// <returns>A <see cref="System.String"/> that represents the current <see cref="GeneticSharp.Domain.Terminations.LogicalOperatorTerminationBase"/>.</returns>
+        /// <returns>A <see cref="System.String"/> that represents the current <see cref="GeneticSharp.Domain.Terminations.Generic.LogicalOperatorTerminationBase<T>"/>.</returns>
         public override string ToString()
         {
             return "{0} (HasReached: {1})".With(GetType().Name, m_hasReached);
@@ -41,7 +42,7 @@ namespace GeneticSharp.Domain.Terminations
         /// </summary>
         /// <returns>True if termination has been reached, otherwise false.</returns>
         /// <param name="geneticAlgorithm">The genetic algorithm.</param>
-        protected abstract bool PerformHasReached(IGeneticAlgorithm geneticAlgorithm);
+        protected abstract bool PerformHasReached(IGeneticAlgorithm<T> geneticAlgorithm);
         #endregion
     }
 }

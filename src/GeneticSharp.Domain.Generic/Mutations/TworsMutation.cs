@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
-using GeneticSharp.Domain.Chromosomes;
+using GeneticSharp.Domain.Chromosomes.Generic;
 using GeneticSharp.Domain.Randomizations;
 
-namespace GeneticSharp.Domain.Mutations
+namespace GeneticSharp.Domain.Mutations.Generic
 {
     /// <summary>
     /// Twors mutation allows the exchange of position of two genes randomly chosen.
@@ -11,7 +11,7 @@ namespace GeneticSharp.Domain.Mutations
     /// </remarks>
     /// </summary>
     [DisplayName("Twors")]
-    public class TworsMutation : MutationBase
+    public class TworsMutation<T> : MutationBase<T>
     {
         #region Constructors
         /// <summary>
@@ -29,7 +29,7 @@ namespace GeneticSharp.Domain.Mutations
         /// </summary>
         /// <param name="chromosome">The chromosome.</param>
         /// <param name="probability">The probability to mutate each chromosome.</param>
-        protected override void PerformMutate(IChromosome chromosome, float probability)
+        protected override void PerformMutate(IChromosome<T> chromosome, float probability)
         {
             if (RandomizationProvider.Current.GetDouble() <= probability)
             {

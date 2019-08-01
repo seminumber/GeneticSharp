@@ -3,7 +3,7 @@ using System.ComponentModel;
 using GeneticSharp.Domain.Randomizations;
 using System.Linq;
 
-namespace GeneticSharp.Domain.Mutations
+namespace GeneticSharp.Domain.Mutations.Generic
 {
     /// <summary>
 	/// Partial Shuffle Mutation (PSM).
@@ -15,7 +15,7 @@ namespace GeneticSharp.Domain.Mutations
 	/// </remarks>
 	/// </summary>
     [DisplayName("Partial Shuffle (PSM)")]
-    public class PartialShuffleMutation : SequenceMutationBase
+    public class PartialShuffleMutation<T> : SequenceMutationBase<T>
     {
         #region Constructors
         /// <summary>
@@ -33,7 +33,7 @@ namespace GeneticSharp.Domain.Mutations
         /// </summary>
         /// <returns>The resulted sequence after mutation operation.</returns>
         /// <param name="sequence">The sequence to be mutated.</param>
-        protected override IEnumerable<T> MutateOnSequence<T>(IEnumerable<T> sequence)
+        protected override IEnumerable<T> MutateOnSequence(IEnumerable<T> sequence)
         {
             // If there is at least two differente genes on source sequence,
             // Then is possible shuffle their in sequence.

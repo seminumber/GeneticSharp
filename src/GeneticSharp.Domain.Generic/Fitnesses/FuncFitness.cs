@@ -1,5 +1,4 @@
 ﻿using System;
-using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Chromosomes.Generic;
 using GeneticSharp.Infrastructure.Framework.Commons;
 
@@ -13,7 +12,7 @@ namespace GeneticSharp.Domain.Fitnesses.Generic
 		private readonly Func<IChromosome<T>, double> m_func;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Fitnesses.FuncFitness"/> class.
+		/// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Fitnesses.Generic.FuncFitness"/> class.
 		/// </summary>
 		/// <param name="func">The fitness evaluation Func.</param>
 		public FuncFitness (Func<IChromosome<T>, double> func)

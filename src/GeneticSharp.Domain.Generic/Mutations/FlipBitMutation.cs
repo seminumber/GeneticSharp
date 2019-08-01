@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
-using GeneticSharp.Domain.Chromosomes;
+using GeneticSharp.Domain.Chromosomes.Generic;
 using GeneticSharp.Domain.Randomizations;
 
-namespace GeneticSharp.Domain.Mutations
+namespace GeneticSharp.Domain.Mutations.Generic
 {
 	/// <summary>
 	/// Takes the chosen genome and inverts the bits (i.e. if the genome bit is 1, it is changed to 0 and vice versa).
@@ -12,7 +12,7 @@ namespace GeneticSharp.Domain.Mutations
 	/// When using this mutation the genetic algorithm should use IBinaryChromosome.
 	/// </remarks>
 	[DisplayName("Flip Bit")]
-	public class FlipBitMutation : MutationBase
+	public class FlipBitMutation<T> : MutationBase<T>
 	{
 		#region Fields
 		private readonly IRandomization m_rnd;
@@ -20,7 +20,7 @@ namespace GeneticSharp.Domain.Mutations
 
 		#region Constructors
 		/// <summary>
-		/// Initializes a new instance of the <see cref="GeneticSharp.Domain.Mutations.FlipBitMutation"/> class.
+		/// Initializes a new instance of the <see cref="GeneticSharp.Domain.Mutations.Generic.FlipBitMutation"/> class.
 		/// </summary>
 		public FlipBitMutation ()
 		{
@@ -34,13 +34,13 @@ namespace GeneticSharp.Domain.Mutations
 		/// </summary>
 		/// <param name="chromosome">The chromosome.</param>
 		/// <param name="probability">The probability to mutate each chromosome.</param>
-		protected override void PerformMutate (IChromosome chromosome, float probability)
+		protected override void PerformMutate (IChromosome<T> chromosome, float probability)
 		{
-			var binaryChromosome = chromosome as IBinaryChromosome;
+			var binaryChromosome = chromosome as IBinaryChromosome<T>;
 
 			if (binaryChromosome == null) 
 			{
-				throw new MutationException (this, "Needs a binary chromosome that implements IBinaryChromosome.");	
+				throw new MutationException<T> (this, "Needs a binary chromosome that implements IBinaryChromosome.");	
 			}
 
 			if (m_rnd.GetDouble() <= probability)

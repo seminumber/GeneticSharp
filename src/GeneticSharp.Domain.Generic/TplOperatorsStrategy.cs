@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Crossovers;
-using GeneticSharp.Domain.Mutations;
-using GeneticSharp.Domain.Populations;
+using GeneticSharp.Domain.Chromosomes.Generic;
+using GeneticSharp.Domain.Crossovers.Generic;
+using GeneticSharp.Domain.Mutations.Generic;
+using GeneticSharp.Domain.Populations.Generic;
 using GeneticSharp.Domain.Randomizations;
 
-namespace GeneticSharp.Domain
+namespace GeneticSharp.Domain.Generic
 {
     /// <summary>
     /// An IOperatorsStrategy's implmentation which use Task Parallel Library (TPL) for parallel execution.
     /// </summary>
-    public class TplOperatorsStrategy : IOperatorsStrategy
+    public class TplOperatorsStrategy<T> : IOperatorStrategy<T>
     {
         /// <summary>
         /// Crosses the specified parents.
@@ -22,9 +22,9 @@ namespace GeneticSharp.Domain
         /// <param name="crossoverProbability">The crossover probability.</param>
         /// <param name="parents">The parents.</param>
         /// <returns>The result chromosomes.</returns>
-        public IList<IChromosome> Cross(IPopulation population, ICrossover crossover, float crossoverProbability, IList<IChromosome> parents)
+        public IList<IChromosome<T>> Cross(IPolulation<T> population, ICrossover<T> crossover, float crossoverProbability, IList<IChromosome<T>> parents)
         {
-            var offspring = new ConcurrentBag<IChromosome>();
+            var offspring = new ConcurrentBag<IChromosome<T>>();
 
             Parallel.ForEach(Enumerable.Range(0, population.MinSize / crossover.ParentsNumber).Select(i => i * crossover.ParentsNumber), i =>
             {
@@ -50,7 +50,7 @@ namespace GeneticSharp.Domain
         /// <param name="mutation">The mutation class.</param>
         /// <param name="mutationProbability">The mutation probability.</param>
         /// <param name="chromosomes">The chromosomes.</param>
-        public void Mutate(IMutation mutation, float mutationProbability, IList<IChromosome> chromosomes)
+        public void Mutate(IMutation<T> mutation, float mutationProbability, IList<IChromosome<T>> chromosomes)
         {
             Parallel.ForEach(chromosomes, c =>
             {

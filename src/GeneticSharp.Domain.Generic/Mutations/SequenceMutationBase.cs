@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-using GeneticSharp.Domain.Chromosomes;
+using GeneticSharp.Domain.Chromosomes.Generic;
 using GeneticSharp.Domain.Randomizations;
 using System.Linq;
 using GeneticSharp.Infrastructure.Framework.Texts;
 
-namespace GeneticSharp.Domain.Mutations
+namespace GeneticSharp.Domain.Mutations.Generic
 {
     /// <summary>
     /// Base class for Mutations on a Sub-Sequence.
     /// </summary>
-    public abstract class SequenceMutationBase : MutationBase
+    public abstract class SequenceMutationBase<T> : MutationBase<T>
     {
         #region Methods
         /// <summary>
@@ -17,7 +17,7 @@ namespace GeneticSharp.Domain.Mutations
         /// </summary>
         /// <param name="chromosome">The chromosome.</param>
         /// <param name="probability">The probability to mutate each chromosome.</param>
-        protected override void PerformMutate(IChromosome chromosome, float probability)
+        protected override void PerformMutate(IChromosome<T> chromosome, float probability)
         {
             ValidateLength(chromosome);
 
@@ -38,11 +38,11 @@ namespace GeneticSharp.Domain.Mutations
         /// Validate length of the chromosome.
         /// </summary>
         /// <param name="chromosome">The chromosome.</param>
-        protected virtual void ValidateLength(IChromosome chromosome)
+        protected virtual void ValidateLength(IChromosome<T> chromosome)
         {
             if (chromosome.Length < 3)
             {
-                throw new MutationException(this, "A chromosome should have, at least, 3 genes. {0} has only {1} gene.".With(chromosome.GetType().Name, chromosome.Length));
+                throw new MutationException<T>(this, "A chromosome should have, at least, 3 genes. {0} has only {1} gene.".With(chromosome.GetType().Name, chromosome.Length));
             }
         }
 
@@ -51,7 +51,7 @@ namespace GeneticSharp.Domain.Mutations
         /// </summary>
         /// <returns>The resulted sequence after mutation operation.</returns>
         /// <param name="sequence">The sequence to be mutated.</param>
-        protected abstract IEnumerable<T> MutateOnSequence<T>(IEnumerable<T> sequence);
+        protected abstract IEnumerable<T> MutateOnSequence(IEnumerable<T> sequence);
         #endregion
     }
 }

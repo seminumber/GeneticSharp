@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using GeneticSharp.Infrastructure.Framework.Commons;
 
-namespace GeneticSharp.Domain.Populations
+namespace GeneticSharp.Domain.Populations.Generic
 {
     /// <summary>
     /// An IGenerationStrategy's implementation which takes into account the performance and just keep the last one generations in the population.
@@ -11,11 +11,11 @@ namespace GeneticSharp.Domain.Populations
     /// </remarks>
     /// </summary>
     [DisplayName("Performance")]
-    public class PerformanceGenerationStrategy : IGenerationStrategy
+    public class PerformanceGenerationStrategy<T> : IGenerationStrategy<T>
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="PerformanceGenerationStrategy"/> class.
+        /// Initializes a new instance of the <see cref="PerformanceGenerationStrategy<T>"/> class.
         /// </summary>
         public PerformanceGenerationStrategy()
         {
@@ -23,7 +23,7 @@ namespace GeneticSharp.Domain.Populations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PerformanceGenerationStrategy"/> class.
+        /// Initializes a new instance of the <see cref="PerformanceGenerationStrategy<T>"/> class.
         /// </summary>
         /// <param name="generationsNumber">The number of generations to keep in the population</param>
         public PerformanceGenerationStrategy(int generationsNumber)
@@ -45,7 +45,7 @@ namespace GeneticSharp.Domain.Populations
         /// Register that a new generation has been created.
         /// </summary>
         /// <param name="population">The population where the new generation has been created.</param>
-        public void RegisterNewGeneration(IPopulation population)
+        public void RegisterNewGeneration(IPolulation<T> population)
         {
             ExceptionHelper.ThrowIfNull("population", population);
 

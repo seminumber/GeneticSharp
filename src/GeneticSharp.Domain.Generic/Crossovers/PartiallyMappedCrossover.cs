@@ -21,7 +21,7 @@ namespace GeneticSharp.Domain.Crossovers.Generic
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.PartiallyMappedCrossover"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.Generic.PartiallyMappedCrossover"/> class.
         /// </summary>
         public PartiallyMappedCrossover() : base(2, 2, 3)
         {
@@ -90,7 +90,8 @@ namespace GeneticSharp.Domain.Crossovers.Generic
             return new List<IChromosome<T>>() { offspring1, offspring2 };
         }
 
-        private Gene<T> GetGeneNotInMappingSection(Gene<T> candidateGene, Gene<T>[] mappingSection, Gene<T>[] otherParentMappingSection)
+        private T GetGeneNotInMappingSection(T candidateGene, IList<T> mappingSection, 
+            IList<T> otherParentMappingSection)
         {
             var indexOnMappingSection = mappingSection
                 .Select((item, index) => new { Gene = item, Index = index })

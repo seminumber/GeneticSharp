@@ -24,7 +24,7 @@ namespace GeneticSharp.Domain.Crossovers.Generic
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.PositionBasedCrossover"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.Generic.PositionBasedCrossover"/> class.
         /// </summary>
         public PositionBasedCrossover()
         {

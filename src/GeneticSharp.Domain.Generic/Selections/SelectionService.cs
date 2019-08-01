@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using GeneticSharp.Infrastructure.Framework.Reflection;
 
-namespace GeneticSharp.Domain.Selections
+namespace GeneticSharp.Domain.Selections.Generic
 {
     /// <summary>
     /// Selection service.
@@ -16,9 +16,9 @@ namespace GeneticSharp.Domain.Selections
         /// </summary>
         /// <returns>All available selection types.</returns>
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-        public static IList<Type> GetSelectionTypes()
+        public static IList<Type> GetSelectionTypes<T>()
         {
-            return TypeHelper.GetTypesByInterface<ISelection>();
+            return TypeHelper.GetTypesByInterface<ISelection<T>>();
         }
 
         /// <summary>
@@ -26,9 +26,9 @@ namespace GeneticSharp.Domain.Selections
         /// </summary>
         /// <returns>The selection names.</returns>
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-        public static IList<string> GetSelectionNames()
+        public static IList<string> GetSelectionNames<T>()
         {
-            return TypeHelper.GetDisplayNamesByInterface<ISelection>();
+            return TypeHelper.GetDisplayNamesByInterface<ISelection<T>>();
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace GeneticSharp.Domain.Selections
         /// <returns>The selection implementation instance.</returns>
         /// <param name="name">The selection name.</param>
         /// <param name="constructorArgs">Constructor arguments.</param>
-        public static ISelection CreateSelectionByName(string name, params object[] constructorArgs)
+        public static ISelection<T> CreateSelectionByName<T>(string name, params object[] constructorArgs)
         {
-            return TypeHelper.CreateInstanceByName<ISelection>(name, constructorArgs);
+            return TypeHelper.CreateInstanceByName<ISelection<T>>(name, constructorArgs);
         }
 
         /// <summary>
@@ -47,9 +47,9 @@ namespace GeneticSharp.Domain.Selections
         /// </summary>
         /// <returns>The selection type.</returns>
         /// <param name="name">The name of selection.</param>
-        public static Type GetSelectionTypeByName(string name)
+        public static Type GetSelectionTypeByName<T>(string name)
         {
-            return TypeHelper.GetTypeByName<ISelection>(name);
+            return TypeHelper.GetTypeByName<ISelection<T>>(name);
         }
         #endregion
     }

@@ -19,7 +19,7 @@ namespace GeneticSharp.Domain.Chromosomes.Generic
         public int Length => m_originalValue.Length;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Chromosomes.IntegerChromosome"/> class.
+        /// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Chromosomes.Generic.IntegerChromosome"/> class.
         /// </summary>
         /// <param name="minValue">Minimum value.</param>
         /// <param name="maxValue">Maximum value.</param>
@@ -81,9 +81,9 @@ namespace GeneticSharp.Domain.Chromosomes.Generic
 		}
 
         /// <summary>
-		/// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Chromosomes.FloatingPointChromosome"/>.
+		/// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Chromosomes.Generic.FloatingPointChromosome"/>.
 		/// </summary>
-		/// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Chromosomes.FloatingPointChromosome"/>.</returns>
+		/// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Chromosomes.Generic.FloatingPointChromosome"/>.</returns>
 		public override string ToString()
         {
             return String.Join("", GetGenes().Reverse().Select(g => g ? "1" : "0").ToArray());

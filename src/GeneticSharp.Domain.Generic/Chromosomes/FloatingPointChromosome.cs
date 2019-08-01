@@ -17,7 +17,7 @@ namespace GeneticSharp.Domain.Chromosomes.Generic
 		private readonly string m_originalValueStringRepresentation;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Chromosomes.FloatingPointChromosome"/> class.
+		/// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Chromosomes.Generic.FloatingPointChromosome"/> class.
 		/// </summary>
 		/// <param name="minValue">Minimum value.</param>
 		/// <param name="maxValue">Max value.</param>
@@ -28,7 +28,7 @@ namespace GeneticSharp.Domain.Chromosomes.Generic
 		}
 
         /// <summary>
-		/// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Chromosomes.FloatingPointChromosome"/> class.
+		/// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Chromosomes.Generic.FloatingPointChromosome"/> class.
 		/// </summary>
 		/// <param name="minValue">Minimum value.</param>
 		/// <param name="maxValue">Max value.</param>
@@ -40,7 +40,7 @@ namespace GeneticSharp.Domain.Chromosomes.Generic
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Chromosomes.FloatingPointChromosome"/> class.
+        /// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Chromosomes.Generic.FloatingPointChromosome"/> class.
         /// </summary>
         /// <param name="minValue">Minimum value.</param>
         /// <param name="maxValue">Max value.</param>
@@ -52,7 +52,7 @@ namespace GeneticSharp.Domain.Chromosomes.Generic
 		}
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Chromosomes.FloatingPointChromosome"/> class.
+        /// Initializes a new instance of the <see cref="T:GeneticSharp.Domain.Chromosomes.Generic.FloatingPointChromosome"/> class.
         /// </summary>
         /// <param name="minValue">Minimum value.</param>
         /// <param name="maxValue">Max value.</param>
@@ -148,9 +148,9 @@ namespace GeneticSharp.Domain.Chromosomes.Generic
 		}
 
 		/// <summary>
-		/// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Chromosomes.FloatingPointChromosome"/>.
+		/// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Chromosomes.Generic.FloatingPointChromosome"/>.
 		/// </summary>
-		/// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Chromosomes.FloatingPointChromosome"/>.</returns>
+		/// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:GeneticSharp.Domain.Chromosomes.Generic.FloatingPointChromosome"/>.</returns>
 		public override string ToString()
 		{
 			return String.Join("", GetGenes().Select(g => g.Value.ToString()).ToArray());

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
-  <Class Name="GeneticSharp.Domain.Populations.Generation">
+  <Class Name="GeneticSharp.Domain.Populations.Generic.Generation">
     <Position X="3" Y="0.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Private" Collapsed="true" />
@@ -10,7 +10,7 @@
       <FileName>Populations\Generation.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Populations.PerformanceGenerationStrategy" BaseTypeListCollapsed="true">
+  <Class Name="GeneticSharp.Domain.Populations.Generic.PerformanceGenerationStrategy" BaseTypeListCollapsed="true">
     <Position X="7.5" Y="2" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -18,7 +18,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="GeneticSharp.Domain.Populations.Population">
+  <Class Name="GeneticSharp.Domain.Populations.Generic.Population">
     <Position X="5" Y="0.5" Width="2.25" />
     <Compartments>
       <Compartment Name="Private" Collapsed="true" />
@@ -28,14 +28,14 @@
       <FileName>Populations\Population.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Populations.PopulationService">
+  <Class Name="GeneticSharp.Domain.Populations.Generic.PopulationService">
     <Position X="0.5" Y="3" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAAAAEAAAAAAAAAgAAIAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Populations\PopulationService.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Populations.TrackingGenerationStrategy" BaseTypeListCollapsed="true">
+  <Class Name="GeneticSharp.Domain.Populations.Generic.TrackingGenerationStrategy" BaseTypeListCollapsed="true">
     <Position X="11" Y="2" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -43,7 +43,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Interface Name="GeneticSharp.Domain.Populations.IGenerationStrategy">
+  <Interface Name="GeneticSharp.Domain.Populations.Generic.IGenerationStrategy">
     <Position X="9.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

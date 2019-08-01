@@ -1,6 +1,7 @@
-﻿using System.ComponentModel;
+﻿using GeneticSharp.Domain.Generic;
+using System.ComponentModel;
 
-namespace GeneticSharp.Domain.Terminations
+namespace GeneticSharp.Domain.Terminations.Generic
 {
     /// <summary>
     /// Fitness Stagnation Termination.    
@@ -9,7 +10,7 @@ namespace GeneticSharp.Domain.Terminations
     /// </remarks>
     /// </summary>
     [DisplayName("Fitness Stagnation")]
-    public class FitnessStagnationTermination : TerminationBase
+    public class FitnessStagnationTermination<T> : TerminationBase<T>
     {
         #region Fields
         private double m_lastFitness;
@@ -50,7 +51,7 @@ namespace GeneticSharp.Domain.Terminations
         /// </summary>
         /// <returns>True if termination has been reached, otherwise false.</returns>
         /// <param name="geneticAlgorithm">The genetic algorithm.</param>
-        protected override bool PerformHasReached(IGeneticAlgorithm geneticAlgorithm)
+        protected override bool PerformHasReached(IGeneticAlgorithm<T> geneticAlgorithm)
         {
             var bestFitness = geneticAlgorithm.BestChromosome.Fitness.Value;
 

@@ -43,7 +43,7 @@ namespace GeneticSharp.Domain.Crossovers.Generic
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.OrderedCrossover"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.Generic.OrderedCrossover"/> class.
         /// </summary>
         public OrderedCrossover()
             : base(2, 2)

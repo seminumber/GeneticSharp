@@ -1,55 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="GeneticSharp.Domain.Crossovers.CrossoverService">
+  <Class Name="GeneticSharp.Domain.Crossovers.Generic.CrossoverService">
     <Position X="8.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAIAAAAAgAAAAAAAAAABAAAAIAAAA=</HashCode>
       <FileName>Crossovers\CrossoverService.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Crossovers.OnePointCrossover" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Crossovers.Generic.OnePointCrossover" Collapsed="true">
     <Position X="5.5" Y="4.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAIAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Crossovers\OnePointCrossover.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Crossovers.OrderedCrossover" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Crossovers.Generic.OrderedCrossover" Collapsed="true">
     <Position X="3.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Crossovers\OrderedCrossover.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Crossovers.PartiallyMappedCrossover" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Crossovers.Generic.PartiallyMappedCrossover" Collapsed="true">
     <Position X="0.5" Y="4.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Crossovers\PartiallyMappedCrossover.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Crossovers.TwoPointCrossover" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Crossovers.Generic.TwoPointCrossover" Collapsed="true">
     <Position X="10.25" Y="4.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAACAAAAAAAEAAAAAAAAAIAAAAAAAA=</HashCode>
       <FileName>Crossovers\TwoPointCrossover.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Crossovers.UniformCrossover" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Crossovers.Generic.UniformCrossover" Collapsed="true">
     <Position X="8" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Crossovers\UniformCrossover.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Crossovers.CrossoverException" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Crossovers.Generic.CrossoverException" Collapsed="true">
     <Position X="8.5" Y="2.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Crossovers\CrossoverException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GeneticSharp.Domain.Crossovers.CrossoverBase" Collapsed="true">
+  <Class Name="GeneticSharp.Domain.Crossovers.Generic.CrossoverBase" Collapsed="true">
     <Position X="5.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAEABAAAAAAACAAAAAgAA=</HashCode>
@@ -57,7 +57,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="GeneticSharp.Domain.Crossovers.ICrossover">
+  <Interface Name="GeneticSharp.Domain.Crossovers.Generic.ICrossover">
     <Position X="5.5" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAABAAAAAAACAAAAAgAA=</HashCode>

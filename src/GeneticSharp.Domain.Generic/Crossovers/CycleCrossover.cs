@@ -23,7 +23,7 @@ namespace GeneticSharp.Domain.Crossovers.Generic
     {
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.CycleCrossover"/> class.
+        /// Initializes a new instance of the <see cref="GeneticSharp.Domain.Crossovers.Generic.CycleCrossover"/> class.
         /// </summary>
         public CycleCrossover()
             : base(2, 2)

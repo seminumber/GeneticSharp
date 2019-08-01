@@ -1,4 +1,6 @@
-namespace GeneticSharp.Domain.Terminations
+using GeneticSharp.Domain.Generic;
+
+namespace GeneticSharp.Domain.Terminations.Generic
 {
     /// <summary>
     /// Defines the interface for a termination condition.
@@ -6,7 +8,7 @@ namespace GeneticSharp.Domain.Terminations
     /// <remarks>
     /// <see href="http://en.wikipedia.org/wiki/Genetic_algorithm#Termination">Wikipedia</see> 
     /// </remarks>
-    public interface ITermination
+    public interface ITermination<T>
     {
         #region Methods
         /// <summary>
@@ -14,7 +16,7 @@ namespace GeneticSharp.Domain.Terminations
         /// </summary>
         /// <returns>True if termination has been reached, otherwise false.</returns>
         /// <param name="geneticAlgorithm">The genetic algorithm.</param>
-        bool HasReached(IGeneticAlgorithm geneticAlgorithm);
+        bool HasReached(IGeneticAlgorithm<T> geneticAlgorithm);
         #endregion
     }
 }

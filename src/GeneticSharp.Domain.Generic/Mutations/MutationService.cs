@@ -6,7 +6,7 @@ using GeneticSharp.Infrastructure.Framework.Reflection;
 using GeneticSharp.Domain.Randomizations;
 
 
-namespace GeneticSharp.Domain.Mutations
+namespace GeneticSharp.Domain.Mutations.Generic
 {
     /// <summary>
     /// Mutation service.
@@ -19,9 +19,9 @@ namespace GeneticSharp.Domain.Mutations
         /// </summary>
         /// <returns>All available mutation types.</returns>
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-        public static IList<Type> GetMutationTypes()
+        public static IList<Type> GetMutationTypes<T>()
         {
-            return TypeHelper.GetTypesByInterface<IMutation>();
+            return TypeHelper.GetTypesByInterface<IMutation<T>>();
         }
 
         /// <summary>
@@ -29,9 +29,9 @@ namespace GeneticSharp.Domain.Mutations
         /// </summary>
         /// <returns>The mutation names.</returns>
         [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-        public static IList<string> GetMutationNames()
+        public static IList<string> GetMutationNames<T>()
         {
-            return TypeHelper.GetDisplayNamesByInterface<IMutation>();
+            return TypeHelper.GetDisplayNamesByInterface<IMutation<T>>();
         }
 
         /// <summary>
@@ -40,9 +40,9 @@ namespace GeneticSharp.Domain.Mutations
         /// <returns>The IMutation's implementation instance.</returns>
         /// <param name="name">The IMutation name.</param>
         /// <param name="constructorArgs">Constructor arguments.</param>
-        public static IMutation CreateMutationByName(string name, params object[] constructorArgs)
+        public static IMutation<T> CreateMutationByName<T>(string name, params object[] constructorArgs)
         {
-            return TypeHelper.CreateInstanceByName<IMutation>(name, constructorArgs);
+            return TypeHelper.CreateInstanceByName<IMutation<T>>(name, constructorArgs);
         }
 
         /// <summary>
@@ -50,9 +50,9 @@ namespace GeneticSharp.Domain.Mutations
         /// </summary>
         /// <returns>The mutation type.</returns>
         /// <param name="name">The name of mutation.</param>
-        public static Type GetMutationTypeByName(string name)
+        public static Type GetMutationTypeByName<T>(string name)
         {
-            return TypeHelper.GetTypeByName<IMutation>(name);
+            return TypeHelper.GetTypeByName<IMutation<T>>(name);
         }
 
         /// <summary>
